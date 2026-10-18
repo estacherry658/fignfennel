@@ -123,3 +123,36 @@ main h1,main h2,main h3,main p,main .date{position:relative;z-index:2}
 main:has(.profile) .s2{display:none}
 
 .gallery.three img{object-position:center 25%}
+
+/* v5: widows + mobile */
+p,.frame span{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
+.story .right p{max-width:50ch}
+@media(max-width:800px){
+ .detail,.profile,.story,.two,.hero{grid-template-columns:1fr;gap:1.5rem}
+ .star{display:none}
+ .site-header{padding:.6rem 5vw;gap:.2rem 4vw;position:sticky}
+ .logo{font-size:2rem}
+ .nav{flex:1 1 100%;justify-content:space-between;gap:.5rem}
+ .nav a{font-size:.8rem}
+ main{padding:1.2rem 5vw 3rem}
+ .site-footer{position:static;flex-direction:column;align-items:center;gap:.6rem;padding:1rem 5vw 4.5rem}
+ .socials{justify-content:center;gap:.5rem}
+ .ig{font-size:.85rem;padding:.2rem .8rem;border-width:2px}
+ .back{position:fixed;left:12px;bottom:12px;z-index:20;font-size:.95rem;padding:.25rem 1rem;background:var(--blue) url(images/textures/pencil.jpg) center/cover;box-shadow:0 2px 8px rgba(117,81,57,.3)}
+ .two .frame{margin-top:0!important}
+ .profile .cards{max-width:420px}
+ .story .right{text-align:left}
+ .story .right p{margin-left:0;max-width:none}
+ .story .right figure img{margin-left:0}
+ .gallery.three{grid-template-columns:repeat(2,1fr);padding-left:0}
+ .cutout{max-width:240px}
+ .hero h1{font-size:3.4rem;margin-bottom:1rem}
+ .art{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 1rem;align-items:end}
+ .art a{position:static!important;width:100%!important}
+ .art img{width:auto;max-height:280px;margin:0 auto}
+ .art a:nth-of-type(2){order:3;grid-column:1/-1;max-width:75%;justify-self:center}
+ .art span{font-size:1rem;margin-top:.3rem}
+}
+@media(max-width:800px){h1 br{display:none}}
+.frame[href="front-yard-forage.html"] img{object-position:top}
