@@ -2,7 +2,7 @@ import os,json
 MAP=json.load(open("assets.json"))
 NAV=[("Esta Eats.","esta-eats.html"),("Lanky Design.","lanky-design.html"),("Exhibits.","exhibits.html")]
 READMORE="https://www.nzherald.co.nz/hawkes-bay-today/news/fruitful-hawkes-bay-exhibition-celebrates-regions-horticultural-heritage/7UYIJL5F4FG25L6VMNBZERRP6Q/"
-INSTAGRAMS=[("@fignfennel","https://instagram.com/fignfennel"),("@estaeats","https://instagram.com/estaeats"),("@lankydesign.nz","https://instagram.com/lankydesign.nz")]
+INSTAGRAMS=[("@fignfennel","https://instagram.com/fignfennel"),("@esta_eats","https://instagram.com/esta_eats"),("@lankydesign.nz","https://instagram.com/lankydesign.nz")]
 PARENT={"exhibits.html":"index.html","esta-eats.html":"index.html","lanky-design.html":"index.html","fruitful.html":"exhibits.html","collected-by-lanky.html":"exhibits.html"}
 for f in ["experiences-esta","food-communications","front-yard-forage","young-enterprise","creations-esta"]:PARENT[f+".html"]="esta-eats.html"
 for f in ["experiences-jodi","auckland-design-week","look-its-lanky","lanky-kitchen","creations-jodi"]:PARENT[f+".html"]="lanky-design.html"
@@ -15,23 +15,27 @@ def page(fn,title,body,cur=""):
 <title>{title} | Fig n' Fennel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"></head><body{" class=home" if fn=="index.html" else ""}>
 <header class="site-header"><a class="logo" href="index.html">FIG N' FENNEL.</a><nav class="nav" aria-label="Main">{nav}</nav></header>
 <main>{body}</main>
 <footer class="site-footer">{backbtn}<div class="socials">{igs}</div></footer>
 <script src="script.js"></script></body></html>'''
     open(fn,"w").write(html)
 STARS='<i class="star purple s1"></i><i class="star blue s2"></i><i class="star green s3"></i>'
+MID='<i class="star purple hm" style="top:16%;left:55%;--s:100px"></i><i class="star blue hm" style="top:44%;left:60%;--s:80px"></i><i class="star green hm" style="top:70%;left:54%;--s:110px"></i><i class="star brown hm" style="top:90%;left:62%;--s:70px"></i>'
+STORY='<i class="star purple hm" style="top:12%;left:52%;--s:100px"></i><i class="star blue hm" style="top:38%;left:55%;--s:80px"></i><i class="star green hm" style="top:62%;left:52%;--s:110px"></i><i class="star brown hm" style="top:86%;left:56%;--s:70px"></i>'
+FYF='<i class="star purple hm" style="top:76%;left:54%;--s:90px"></i><i class="star green" style="bottom:3%;left:5%;--s:110px"></i><i class="star blue hm" style="bottom:6%;right:3%;--s:90px"></i>'
 P=lambda t:"".join(f"<p>{x.replace(chr(10),'<br>')}</p>" for x in t.strip().split("\n\n"))
 IMG=lambda n,a="":f'<img src="{MAP[n]}" alt="{a}" loading="lazy">'
 
 # HOME
 page("index.html","Home",f'''
-<i class="star brown" style="top:12%;left:34%;--s:70px"></i><i class="star green" style="top:52%;left:30%;--s:60px"></i><i class="star purple" style="top:30%;left:28%;--s:40px"></i><i class="star green" style="top:8%;right:4%;--s:110px"></i><i class="star brown" style="top:55%;right:3%;--s:80px"></i><i class="star blue" style="top:25%;left:52%;--s:50px"></i>
+<i class="star brown" style="top:10%;left:36%;--s:70px"></i><i class="star purple" style="top:36%;left:32%;--s:40px"></i><i class="star green" style="top:66%;left:44%;--s:60px"></i>
 <section class="hero"><h1>Two<br>gals<br>with<br>many<br><em>visions.</em></h1>
 <div class="art">
-<a href="esta-eats.html" style="top:0;left:20%;width:26%"><img src="{MAP['home-apple']}" alt="Apple core illustration"><span>Esta Eats</span></a>
-<a href="exhibits.html" style="bottom:0;left:0;width:46%"><img src="{MAP['home-fennel']}" alt="Fennel and fig illustration"><span>Exhibits &amp; More</span></a>
+<i class="star blue" style="top:36%;left:28%;--s:50px"></i><i class="star green" style="top:44%;left:63%;--s:80px"></i><i class="star brown" style="bottom:6%;left:50%;--s:70px"></i>
+<a href="esta-eats.html" style="top:0;left:36%;width:26%"><img src="{MAP['home-apple']}" alt="Apple core illustration"><span>Esta Eats</span></a>
+<a href="exhibits.html" style="bottom:0;left:0;width:38%"><img src="{MAP['home-fennel']}" alt="Fennel and fig illustration"><span>Exhibits &amp; More</span></a>
 <a href="lanky-design.html" style="top:0;right:4%;width:20%"><img src="{MAP['home-character']}" alt="Lanky character illustration"><span>Lanky Design</span></a>
 </div></section>''')
 
@@ -50,7 +54,7 @@ We are eager to tell more sustainable stories through immersive experiences.""")
 # STORY PAGES
 def side(items):
     return "".join(f'<figure>{IMG(i,a)}</figure><h2>{h}</h2>{P(t)}' for i,a,h,t in items)
-page("fruitful.html","Fruitful",f'''{STARS}<div class="story"><div><h1>Fruitful.</h1>
+page("fruitful.html","Fruitful",f'''{STORY}<div class="story"><div><h1>Fruitful.</h1>
 <h2>Why</h2>{P("""As two fruit loving gals Fruitful was an inevitable creation but the closure of some of the Watties lines and local fruit stores replaced with chicken shops kickstarted us.
 We wanted to create a world of appreciation for our place and the fruit that grows within it.""")}
 <h2>What</h2>{P("Whilst searching for a place to share our story we realised the answer was already in our clutches. We knew of an Art Deco building calling to be shared with the world.")}
@@ -58,8 +62,8 @@ We wanted to create a world of appreciation for our place and the fruit that gro
 <figure>{IMG("fruitful-2","Gallery staircase")}</figure><figure>{IMG("fruitful-3","Visitors chatting")}</figure>
 <h2>Feedback.</h2>{P("""We were surprised by many of the visitors that came eager to talk about fruit. It was comforting to know we weren't the only ones with an obsession.
 The exhibit brought together people willing to fly the flag of Te Matau-a-Māui as a the Fruit bowl of Aotearoa. It held a place for important conversations about the future of our region.""")}
-<figure>{IMG("fruitful-4","Gallery window")}</figure><h2>Future Goals.</h2>{P("This event pushes us towards creating community activations. We now have a Canvas to tell important stories through art, food, and most importantly conversations. We are eager to create more worlds of important conversations because from small things big things grow.")}
-<p><a href="{READMORE}" target="_blank" rel="noopener"><strong>Read more here...</strong></a></p></div>
+<figure>{IMG("fruitful-4","Gallery window")}</figure><div class="last"><h2>Future Goals.</h2>{P("This event pushes us towards creating community activations. We now have a Canvas to tell important stories through art, food, and most importantly conversations. We are eager to create more worlds of important conversations because from small things big things grow.")}
+<p><a href="{READMORE}" target="_blank" rel="noopener"><strong>Read more here...</strong></a></p></div></div>
 <div class="right"><p class="date">July 2026.</p>
 {side([("fruitful-ceramics","Lanky ceramics shelf","Lanky Ceramics.","Jodi created buttons & ceramics that serve as reminders of the brightness that fruit brings to our worlds. She also translated her work into watercolour showcasing her love for a variety of mediums."),
 ("fruitful-tree","The tree","The Tree!","A cardboard tree adorned with golden walnuts for visitors to pick when popping a koha into the tree for Garden to Table. Visitors walked away with a fruitful message and we lent a hand to an organisation growing our next generation of gardeners."),
@@ -67,14 +71,14 @@ The exhibit brought together people willing to fly the flag of Te Matau-a-Māui 
 ("fruitful-wat","Visitor looking at art","WAT TIES?","We also featured Esta's mother, Shelley's work of painting which tells stories and ask's questions of 'Wat Ties?'"),
 ("fruitful-food","Fruitful food platter","Fruitful Food.","Esta created food to fuel happy visitors. The food was all created from locally sourced ingredients which sat alongside a map, serving as another reminder of the great things that grow here.")])}</div></div>''',"exhibits.html")
 
-page("collected-by-lanky.html","Collected by Lanky",f'''{STARS}<div class="story"><div><h1>Collected By Lanky.</h1>
+page("collected-by-lanky.html","Collected by Lanky",f'''{STORY}<div class="story"><div><h1>Collected By Lanky.</h1>
 <h2>WHY</h2>{P("""After many winter walks desperate for sunshine there was one thing that always shone bright... the lemons adorning our neighbourhood trees. A brightness amongst the grey we wanted our community to appreciate.
 Simultaneously Jodi jumped on an opportunity to have her first solo exhibit at Creative Arts Napier.
 Collected by Lanky was born.""")}<figure>{IMG("collected-1","Jodi and Esta with lemons")}</figure>
 <h2>What</h2>{P("Collected by Lanky was an exhibit of Jodi's multi disciplinary work centered on Lemons.")}<figure>{IMG("collected-2","Framed character prints")}</figure>
-<h2>The Future.</h2>{P("""This exhibit brought what were once doodles in Maths class to the community. It was incredibly satisfying to see the way visitors connected with the personality of Jodi's work.
+<figure>{IMG("collected-3","Lemon treats platter")}</figure><div class="last"><h2>The Future.</h2>{P("""This exhibit brought what were once doodles in Maths class to the community. It was incredibly satisfying to see the way visitors connected with the personality of Jodi's work.
 
-The success of this exhibit was proof we were ready to do it all again, Fig n' Fennel was born and the journey began.""")}<figure>{IMG("collected-3","Lemon treats platter")}</figure></div>
+The success of this exhibit was proof we were ready to do it all again, Fig n' Fennel was born and the journey began.""")}</div></div>
 <div class="right"><p class="date">July 2025.</p>
 {side([("collected-prints","Framed prints","Framed prints.","Jodi's characters representing the wild and wonderful lemons of our neighbourhoods were framed in wee prints being sure to bring joy to homes."),
 ("collected-buttons","Ceramic buttons","Ceramic Buttons.","Offering people an easy fix to brighten items they already own, Lanky buttons ignited creativity from visitors and continue to be popular."),
@@ -83,7 +87,7 @@ The success of this exhibit was proof we were ready to do it all again, Fig n' F
 
 # PROFILE PAGES
 def cards(c):return '<div class="cards">'+"".join(f'<a class="frame" href="{h}">{IMG(i,t)}<h3>{t}</h3><span>{d}</span></a>' for h,i,t,d in c)+'</div>'
-page("esta-eats.html","Esta Eats",f'''{STARS}<div class="profile"><div><h1>Esta Eats.</h1>
+page("esta-eats.html","Esta Eats",f'''{STARS}{MID}<div class="profile"><div><h1>Esta Eats.</h1>
 <h2>Who's Esta?</h2>{P("""Esta is a gal with a whole lot of excitement for the world.
 She's pretty excited to spend time experimenting in the kitchen,
 Riding waves on her boogie board,
@@ -103,7 +107,7 @@ Esta loves to learn and keep busy. She heads back home to Hawkes Bay whenever sh
 {IMG("esta-garden","Esta in a garden").replace("<img","<img style=\"max-width:300px\"")}</div>
 {cards([("experiences-esta.html","esta-card-1","Experiences","Click to Read about what has shaped her"),("food-communications.html","esta-card-2","Food Communications","Check out how Esta has communicated her love for food."),("front-yard-forage.html","esta-card-3","Front Yard Forage","Read about how Esta Gathered goods for a cause."),("young-enterprise.html","esta-card-4","Young Enterprise","Esta's Young Enterprise Businesses shaped her thinking learn a little about it here."),("creations-esta.html","esta-card-5","Creations","A wee collection of fun things Esta's made.")])}</div>''',"esta-eats.html")
 
-page("lanky-design.html","Lanky Design",f'''{STARS}<div class="profile"><div><h1>Lanky Design.</h1>
+page("lanky-design.html","Lanky Design",f'''{STARS}{MID}<div class="profile"><div><h1>Lanky Design.</h1>
 <h2>Who's Jodi?</h2>{P("""Jodi is a maker with a constantly creative outlook on life.
 She seeks inspiration from the trees,
 The leaves blowing in the breeze,
@@ -138,11 +142,11 @@ After making the transition moving out of home Esta realised that many Universit
 Esta also experiments on her Instagram @estaeats. She sets herself the yearly challenge of cooking an entire cookbook a year, that's & more food moments are shared.
 
 Good food is better shared.""",6,"esta-eats.html")
-page("front-yard-forage.html","Front Yard Forage",f'''{STARS}<div class="detail"><div><p class="date" style="text-align:left">2022/23</p><h1>Front Yard Forage</h1>{P("""As an op-shopped addict Esta had created a pretty large collection of fun things that needed better homes. She found her friends with the same issue. So she thought why not bring them all together in her front yard.
+page("front-yard-forage.html","Front Yard Forage",f'''{FYF}<div class="detail"><div><p class="date" style="text-align:left">2022/23</p><h1>Front Yard Forage</h1>{P("""As an op-shopped addict Esta had created a pretty large collection of fun things that needed better homes. She found her friends with the same issue. So she thought why not bring them all together in her front yard.
 
 She created Front Yard Forage, a one day only event bringing together her friend's second hand clothing, art and furniture to find new homes. The sale also raised funds for ReSource, a charity that rehomes goods to people in need. The event was about having a bit of summer fun and embracing the better way to buy.
 
-This event featured a small side of Lanky Design work, the joy this work brought to people lit a wee fire in Esta's mind that she needed to bring more people together over joyful things.""")}</div><div class="gallery">{IMG("front-yard-forage-1","Front Yard Forage poster")}{IMG("front-yard-forage-2","Event photo")}</div></div>''',"esta-eats.html")
+This event featured a small side of Lanky Design work, the joy this work brought to people lit a wee fire in Esta's mind that she needed to bring more people together over joyful things.""")}</div><div class="gallery poster">{IMG("front-yard-forage-1","Front Yard Forage poster")}{IMG("front-yard-forage-2","Event photo")}</div></div>''',"esta-eats.html")
 detail("young-enterprise.html","Young Enterprise Scheme","""As a child Esta was always dreaming up business ideas so being involved in Young Enterprise in High School was a long awaited experience. Driven by sustainability Esta created two businesses with her team focused on solving paper waste in her school.
 
 Ours NCEA Planners
@@ -154,7 +158,7 @@ Driven to make a more direct impact on the school paper waste Esta and her team 
 Although Jodi wasn't a part of this team, she drew many of the pictures featured and involved in the ideation. This was planting the seed for our future of collaboration.""",4,"esta-eats.html")
 def creations(fn,who,back):
     imgs="".join(IMG(f"{fn[:-5]}-{i+1}",f"Creation {i+1}") for i in range(9))
-    page(fn,"Creations",f'{STARS}<p>Often it\'s the wee projects we do in our spare time that plant the seeds of bigger things<br>Here\'s a few things {who}\'s made in her time that she quite enjoys.</p><div class="gallery three">{imgs}</div>',back)
+    page(fn,"Creations",f'{STARS}<p class="intro">Often it\'s the wee projects we do in our spare time that plant the seeds of bigger things<br>Here\'s a few things {who}\'s made in her time that she quite enjoys.</p><div class="gallery three">{imgs}</div>',back)
 creations("creations-esta.html","Esta","esta-eats.html");creations("creations-jodi.html","Jodi","lanky-design.html")
 detail("experiences-jodi.html","Experiences","""Fig n' Fennel believe there are many experiences we have been lucky to have that guide us...
 Here's a few that have shaped Jodi

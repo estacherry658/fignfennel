@@ -86,3 +86,40 @@ p{margin-bottom:1rem;max-width:62ch}
 /* home buttons */
 .art a{cursor:pointer;transition:transform .3s,opacity .3s,color .3s}
 .art a:hover,.art a:focus-visible{transform:translateY(-12px) rotate(-3deg) scale(1.04);opacity:.75;color:var(--mauve)}
+
+/* v3 tweaks: bigger spread header, tighter home layout */
+.site-header{justify-content:space-between;gap:2vw}
+.logo{font-size:clamp(2rem,5vw,4.2rem)}
+.nav{flex:1;justify-content:space-evenly;gap:1rem}
+.nav a{font-size:clamp(.85rem,1.4vw,1.3rem)}
+.site-footer .nav{display:none}
+body.home main{padding-top:.8rem}
+.hero{align-items:start;min-height:0}
+.hero h1{font-size:min(8vw,13vh,7rem);line-height:.98}
+.art{height:clamp(440px,calc(100vh - 230px),660px)}
+@media(max-width:800px){.nav{flex:1 1 100%}.hero h1{font-size:3.6rem}.art{height:480px}}
+
+/* v4: bigger type, bigger square buttons, stars behind text, balanced story pages */
+body{font-size:clamp(.95rem,1.15vw,1.12rem)}
+h1{font-size:clamp(1.7rem,2.6vw,2.5rem)}
+h2{font-size:clamp(1.25rem,1.9vw,1.8rem)}
+.star{z-index:1}
+main h1,main h2,main h3,main p,main .date{position:relative;z-index:2}
+.frame{position:relative;z-index:2}
+.frame img{aspect-ratio:1}
+.frame h3{font-size:clamp(1.15rem,1.6vw,1.5rem)}
+.frame span{font-size:.9rem}
+.profile{grid-template-columns:1fr minmax(300px,380px);gap:5vw}
+.cards{gap:1.4rem}
+.intro{max-width:none}
+.gallery.poster{align-items:start}
+.gallery.poster img:first-child{aspect-ratio:auto;object-fit:contain;background:none}
+.story{align-items:stretch}
+.story>div:first-child{display:flex;flex-direction:column}
+.story .last{margin-top:auto}
+.story .right figure img{aspect-ratio:1;width:min(100%,320px);max-height:none;margin-left:auto}
+.story .right p{max-width:42ch}
+@media(max-width:800px){.hm{display:none}.story .right figure img{width:100%}}
+main:has(.profile) .s2{display:none}
+
+.gallery.three img{object-position:center 25%}
