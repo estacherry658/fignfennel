@@ -156,3 +156,4 @@ h1,h2,h3{text-wrap:balance}
 }
 @media(max-width:800px){h1 br{display:none}}
 .frame[href="front-yard-forage.html"] img{object-position:top}
+.hero h1 br{display:inline}.hero>*{min-width:0}
