@@ -2,7 +2,7 @@ import os,json
 MAP=json.load(open("assets.json"))
 NAV=[("Esta Eats.","esta-eats.html"),("Lanky Design.","lanky-design.html"),("Exhibits.","exhibits.html")]
 READMORE="https://www.nzherald.co.nz/hawkes-bay-today/news/fruitful-hawkes-bay-exhibition-celebrates-regions-horticultural-heritage/7UYIJL5F4FG25L6VMNBZERRP6Q/"
-CONTACT_EMAIL=""  # TODO: put your email here once you have it, e.g. "hello@yourdomain.co.nz"
+CONTACT_EMAIL="jodinesta@fignfennel.co.nz"  # TODO: put your email here once you have it, e.g. "hello@yourdomain.co.nz"
 INSTAGRAMS=[("@fignfennel","https://instagram.com/fignfennel"),("@esta_eats","https://instagram.com/esta_eats"),("@lankydesign.nz","https://instagram.com/lankydesign.nz")]
 PARENT={"exhibits.html":"index.html","esta-eats.html":"index.html","lanky-design.html":"index.html","fruitful.html":"exhibits.html","collected-by-lanky.html":"exhibits.html"}
 for f in ["experiences-esta","food-communications","front-yard-forage","young-enterprise","creations-esta"]:PARENT[f+".html"]="esta-eats.html"
@@ -10,7 +10,7 @@ for f in ["experiences-jodi","auckland-design-week","look-its-lanky","lanky-kitc
 def page(fn,title,body,cur=""):
     back=PARENT.get(fn)
     backbtn=f'<a class="back" href="{back}"><span aria-hidden="true">&larr;</span> Back</a>' if back else '<span></span>'
-    contact=(f'<a class="ig contact" href="mailto:{CONTACT_EMAIL}">Contact</a>' if CONTACT_EMAIL else '<a class="ig contact" href="#" title="Email coming soon">Contact</a>')
+    contact=(f'<a class="ig contact" href="mailto:{CONTACT_EMAIL}" data-email="{CONTACT_EMAIL}" role="button" title="Click to copy our email address" aria-live="polite">Contact</a>' if CONTACT_EMAIL else '<a class="ig contact" href="#" title="Email coming soon">Contact</a>')
     igs="".join(f'<a class="ig" href="{u}" target="_blank" rel="noopener">{n}</a>' for n,u in INSTAGRAMS)
     nav="".join(f'<a href="{h}"{" aria-current=page" if h==cur else ""}>{t}</a>' for t,h in NAV)
     html=f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
