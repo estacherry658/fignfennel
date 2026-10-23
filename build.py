@@ -123,10 +123,11 @@ For Jodi the earth serves as her true muse.""")}
 {IMG("jodi-clay","Jodi working with clay").replace("<img","<img style=\"max-width:300px\"")}</div>
 {cards([("experiences-jodi.html","jodi-card-1","Experiences.","Click to read about what has shaped her"),("auckland-design-week.html","jodi-card-2","Auckland Design Week.","Jodi got involved in Auckland Design Week Read about it here."),("look-its-lanky.html","jodi-card-3","Look it's Lanky!","Jodi's world on display!"),("lanky-kitchen.html","jodi-card-4","Lanky Kitchen.","Jodi created an immersive papier mache kitchen."),("creations-jodi.html","jodi-card-5","Creations","A wee collection of fun things Jodi's made.")])}</div>''',"lanky-design.html")
 
+WORK='<ul class="work-links"><li><a href="https://www.outstandingfoodproducer.co.nz/meet-your-outstanding-maker/wairarapa-grains" target="_blank" rel="noopener">Read about the Grain Behind the Great</a></li><li><a href="https://recipes.co.nz/recipes/beef-stuffed-nasturtium-leaves/" target="_blank" rel="noopener">Here\'s my Beef Stuffed Nasturtium recipe</a></li><li><a href="https://recipes.co.nz/recipes/lamb-and-greens-crinkle-filo-pie/" target="_blank" rel="noopener">Here\'s my Lamb and Greens Crinkle Pie recipe</a></li></ul>'
 # DETAIL PAGES (text left, photo grid right)
-def detail(fn,t,txt,n,back,sub=""):
+def detail(fn,t,txt,n,back,sub="",after=""):
     imgs="".join(IMG(f"{fn[:-5]}-{i+1}",f"{t} photo {i+1}") for i in range(n))
-    page(fn,t,f'{STARS}<div class="detail"><div><h1>{t}</h1>{sub}{P(txt)}</div><div class="gallery">{imgs}</div></div>',back)
+    page(fn,t,f'{STARS}<div class="detail"><div><h1>{t}</h1>{sub}{P(txt)}{after}</div><div class="gallery">{imgs}</div></div>',back)
 detail("experiences-esta.html","Experiences","""Fig n' Fennel believe there are many experiences we have been lucky to have that guide us...
 Here's a few that have shaped Esta
 
@@ -143,7 +144,7 @@ After making the transition moving out of home Esta realised that many Universit
 
 Esta also experiments on her Instagram @estaeats. She sets herself the yearly challenge of cooking an entire cookbook a year, that's & more food moments are shared.
 
-Good food is better shared.""",6,"esta-eats.html")
+Good food is better shared.""",6,"esta-eats.html",after=WORK)
 page("front-yard-forage.html","Front Yard Forage",f'''{FYF}<div class="detail"><div><p class="date" style="text-align:left">2022/23</p><h1>Front Yard Forage</h1>{P("""As an op-shopped addict Esta had created a pretty large collection of fun things that needed better homes. She found her friends with the same issue. So she thought why not bring them all together in her front yard.
 
 She created Front Yard Forage, a one day only event bringing together her friend's second hand clothing, art and furniture to find new homes. The sale also raised funds for ReSource, a charity that rehomes goods to people in need. The event was about having a bit of summer fun and embracing the better way to buy.

@@ -171,3 +171,8 @@ body{cursor:url(images/stars/cursor.png) 16 16,auto}
 a,button,.frame,.art a{cursor:url(images/stars/cursor-pointer.png) 18 18,pointer}
 .contact{background:transparent}
 @media(max-width:800px){.cutout-wrap{max-width:240px}.star.foot{display:block;--s:56px}}
+
+.work-links{list-style:none;padding:0;margin:1.6rem 0 0;position:relative;z-index:2}
+.work-links li{margin:0 0 .7rem}
+.work-links a{font-weight:600;text-decoration:underline;text-underline-offset:3px;transition:color .25s}
+.work-links a:hover,.work-links a:focus-visible{color:var(--mauve)}
