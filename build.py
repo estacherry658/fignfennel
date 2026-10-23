@@ -2,6 +2,7 @@ import os,json
 MAP=json.load(open("assets.json"))
 NAV=[("Esta Eats.","esta-eats.html"),("Lanky Design.","lanky-design.html"),("Exhibits.","exhibits.html")]
 READMORE="https://www.nzherald.co.nz/hawkes-bay-today/news/fruitful-hawkes-bay-exhibition-celebrates-regions-horticultural-heritage/7UYIJL5F4FG25L6VMNBZERRP6Q/"
+CONTACT_EMAIL=""  # TODO: put your email here once you have it, e.g. "hello@yourdomain.co.nz"
 INSTAGRAMS=[("@fignfennel","https://instagram.com/fignfennel"),("@esta_eats","https://instagram.com/esta_eats"),("@lankydesign.nz","https://instagram.com/lankydesign.nz")]
 PARENT={"exhibits.html":"index.html","esta-eats.html":"index.html","lanky-design.html":"index.html","fruitful.html":"exhibits.html","collected-by-lanky.html":"exhibits.html"}
 for f in ["experiences-esta","food-communications","front-yard-forage","young-enterprise","creations-esta"]:PARENT[f+".html"]="esta-eats.html"
@@ -9,6 +10,7 @@ for f in ["experiences-jodi","auckland-design-week","look-its-lanky","lanky-kitc
 def page(fn,title,body,cur=""):
     back=PARENT.get(fn)
     backbtn=f'<a class="back" href="{back}"><span aria-hidden="true">&larr;</span> Back</a>' if back else '<span></span>'
+    contact=(f'<a class="ig contact" href="mailto:{CONTACT_EMAIL}">Contact</a>' if CONTACT_EMAIL else '<a class="ig contact" href="#" title="Email coming soon">Contact</a>')
     igs="".join(f'<a class="ig" href="{u}" target="_blank" rel="noopener">{n}</a>' for n,u in INSTAGRAMS)
     nav="".join(f'<a href="{h}"{" aria-current=page" if h==cur else ""}>{t}</a>' for t,h in NAV)
     html=f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,7 +20,7 @@ def page(fn,title,body,cur=""):
 <link rel="stylesheet" href="style.css"></head><body{" class=home" if fn=="index.html" else ""}>
 <header class="site-header"><a class="logo" href="index.html">FIG N' FENNEL.</a><nav class="nav" aria-label="Main">{nav}</nav></header>
 <main>{body}</main>
-<footer class="site-footer">{backbtn}<div class="socials">{igs}</div></footer>
+<footer class="site-footer">{backbtn}<div class="socials">{igs}{contact}</div></footer>
 <script src="script.js"></script></body></html>'''
     open(fn,"w").write(html)
 STARS='<i class="star purple s1"></i><i class="star blue s2"></i><i class="star green s3"></i>'
@@ -95,7 +97,7 @@ Wandering neighbourhoods foraging,
 Learning lots about how to create an earth we can be proud of,
 
 But most of all she's pretty excited to bring communities together to make change.""")}
-{IMG("esta-cutout","Esta mid-leap").replace("<img","<img class=\"cutout\"")}
+<div class="cutout-wrap">{IMG("esta-cutout","Esta mid-leap").replace("<img","<img class=\"cutout\"")}<i class="star brown foot" style="left:25.8%;top:97%"></i></div>
 <h2>What's She Doing Right Now?</h2>{P("""Esta's studying a Bachelor of Design and Commerce majoring in Innovation and Entrepreneurship at the University of Auckland.
 
 Her studies allow for lot's of agency over the content she studies so many of her projects behold food and sustainability related. She's jumped on every opportunity from classes taught by CEO's, Mentorship from a Sustainability consultant to the Deans Leadership program.
@@ -113,7 +115,7 @@ She seeks inspiration from the trees,
 The leaves blowing in the breeze,
 The patterns rippling the water's surface,
 For Jodi the earth serves as her true muse.""")}
-{IMG("jodi-cutout","Jodi mid-leap").replace("<img","<img class=\"cutout\"")}
+<div class="cutout-wrap">{IMG("jodi-cutout","Jodi mid-leap").replace("<img","<img class=\"cutout\"")}<i class="star brown foot" style="left:53.7%;top:97%"></i></div>
 <h2>What's She Doing Right Now?</h2>{P("""She's currently immersed in the world of clay, working part-time at Emily Mallard Ceramics in Napier. She creates stock for the shop whilst also helping customers along their creative journeys. Jodi enjoys the conversations and connections she's been lucky to make through this job. Otherwise she's often amidst many late night projects and seeking opportunities to learn through other's processes.""")}
 <h2>She Dabbles In.</h2>{P("Working on hands on craft is her favourite form\nClay\nDrawing\nPaper craft\nSculpture\nPaper mache\nIdeation")}
 <h2>What does she care about?</h2>{P("Appreciation for the world and the many great things amongst it.\nJodi has a love for fine details and an appreciation for slowing down")}

@@ -157,3 +157,17 @@ h1,h2,h3{text-wrap:balance}
 @media(max-width:800px){h1 br{display:none}}
 .frame[href="front-yard-forage.html"] img{object-position:top}
 .hero h1 br{display:inline}.hero>*{min-width:0}
+
+/* v6: photo crops, foot stars, star cursor, contact */
+img[src$="estacreations/2-creations.jpg"]{object-position:center 90%!important}
+img[src$="estacreations/3-creations.jpg"],img[src$="esta-eats/creations-photo-esta.jpg"]{object-position:center 90%!important}
+img[src$="estacreations/7-creations.jpg"]{object-position:center 100%!important}
+img[src$="jodi-creations/8-jodi-creations.jpg"]{object-position:center 72%!important}
+img[src$="esta-eats/yes-photo.jpg"]{object-position:100% center!important}
+.cutout-wrap{position:relative;display:block;width:100%;max-width:340px;margin:1rem 0 4.5rem}
+.cutout-wrap .cutout{margin:0;max-width:none}
+.star.foot{--s:80px;margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);animation:none;z-index:1}
+body{cursor:url(images/stars/cursor.png) 16 16,auto}
+a,button,.frame,.art a{cursor:url(images/stars/cursor-pointer.png) 18 18,pointer}
+.contact{background:transparent}
+@media(max-width:800px){.cutout-wrap{max-width:240px}.star.foot{display:block;--s:56px}}
