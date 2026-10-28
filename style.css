@@ -176,3 +176,28 @@ a,button,.frame,.art a{cursor:url(images/stars/cursor-pointer.png) 18 18,pointer
 .work-links li{margin:0 0 .7rem}
 .work-links a{font-weight:600;text-decoration:underline;text-underline-offset:3px;transition:color .25s}
 .work-links a:hover,.work-links a:focus-visible{color:var(--mauve)}
+
+/* v7: home page only - fill wide screens instead of leaving empty side margins */
+body.home main{max-width:none}
+@media(min-width:1500px){
+ body.home .hero h1{font-size:min(8vw,13vh,12rem)}
+ body.home .art{height:clamp(27.5rem,calc(100vh - 14.4rem),56rem)}
+ body.home .art span{font-size:clamp(1.1rem,1.1vw,1.8rem)}
+ body.home .star{scale:1.25}
+}
+@media(min-width:2200px){body.home .star{scale:1.7}}
+@media(min-width:3000px){body.home .star{scale:2.2}}
+
+/* calendar */
+.hero{position:relative}
+.preorder{max-width:min(100%,46rem);margin:3.5rem auto 1.5rem}
+.frame.calendar-card img{aspect-ratio:auto;object-fit:contain;background:none}
+.frame.calendar-card h3{text-align:center;font-size:clamp(1.4rem,2.2vw,2rem);margin-top:.6rem}
+.gallery.rect{align-items:start}
+.gallery.rect img{aspect-ratio:auto;object-fit:contain;background:none;height:auto}
+.gallery.rect img:first-child{grid-column:1/-1}
+.inline-link{font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.inline-link:hover{color:var(--mauve)}
+.btn{display:inline-block;text-decoration:none;font-family:var(--font-display);font-size:1.25rem;color:var(--brown);padding:.4rem 1.5rem;border:3px solid var(--brown);border-radius:24px 28px 22px 26px/26px 22px 28px 24px;transition:transform .25s,background-color .25s,color .25s;position:relative;z-index:2}
+.btn:hover,.btn:focus-visible{background:var(--brown);color:var(--cream);transform:translateY(-3px) rotate(-1deg)}
+@media(max-width:800px){.gallery.rect{grid-template-columns:1fr}.preorder{margin-top:2rem}}

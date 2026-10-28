@@ -4,13 +4,14 @@ NAV=[("Esta Eats.","esta-eats.html"),("Lanky Design.","lanky-design.html"),("Exh
 READMORE="https://www.nzherald.co.nz/hawkes-bay-today/news/fruitful-hawkes-bay-exhibition-celebrates-regions-horticultural-heritage/7UYIJL5F4FG25L6VMNBZERRP6Q/"
 CONTACT_EMAIL="jodinesta@fignfennel.co.nz"  # TODO: put your email here once you have it, e.g. "hello@yourdomain.co.nz"
 INSTAGRAMS=[("@fignfennel","https://instagram.com/fignfennel"),("@esta_eats","https://instagram.com/esta_eats"),("@lankydesign.nz","https://instagram.com/lankydesign.nz")]
-PARENT={"exhibits.html":"index.html","esta-eats.html":"index.html","lanky-design.html":"index.html","fruitful.html":"exhibits.html","collected-by-lanky.html":"exhibits.html"}
+PARENT={"calendar.html":"index.html","exhibits.html":"index.html","esta-eats.html":"index.html","lanky-design.html":"index.html","fruitful.html":"exhibits.html","collected-by-lanky.html":"exhibits.html"}
 for f in ["experiences-esta","food-communications","front-yard-forage","young-enterprise","creations-esta"]:PARENT[f+".html"]="esta-eats.html"
 for f in ["experiences-jodi","auckland-design-week","look-its-lanky","lanky-kitchen","creations-jodi"]:PARENT[f+".html"]="lanky-design.html"
 def page(fn,title,body,cur=""):
     back=PARENT.get(fn)
     backbtn=f'<a class="back" href="{back}"><span aria-hidden="true">&larr;</span> Back</a>' if back else '<span></span>'
     contact=(f'<a class="ig contact" href="mailto:{CONTACT_EMAIL}" data-email="{CONTACT_EMAIL}" role="button" title="Click to copy our email address" aria-live="polite">Contact</a>' if CONTACT_EMAIL else '<a class="ig contact" href="#" title="Email coming soon">Contact</a>')
+    cal='<a class="ig" href="calendar.html">Calendar</a>'
     igs="".join(f'<a class="ig" href="{u}" target="_blank" rel="noopener">{n}</a>' for n,u in INSTAGRAMS)
     nav="".join(f'<a href="{h}"{" aria-current=page" if h==cur else ""}>{t}</a>' for t,h in NAV)
     html=f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,7 +21,7 @@ def page(fn,title,body,cur=""):
 <link rel="stylesheet" href="style.css"></head><body{" class=home" if fn=="index.html" else ""}>
 <header class="site-header"><a class="logo" href="index.html">FIG N' FENNEL.</a><nav class="nav" aria-label="Main">{nav}</nav></header>
 <main>{body}</main>
-<footer class="site-footer">{backbtn}<div class="socials">{igs}{contact}</div></footer>
+<footer class="site-footer">{backbtn}<div class="socials">{igs}{cal}{contact}</div></footer>
 <script src="script.js"></script></body></html>'''
     open(fn,"w").write(html)
 STARS='<i class="star purple s1"></i><i class="star blue s2"></i><i class="star green s3"></i>'
@@ -32,14 +33,25 @@ IMG=lambda n,a="":f'<img src="{MAP[n]}" alt="{a}" loading="lazy">'
 
 # HOME
 page("index.html","Home",f'''
-<i class="star brown" style="top:10%;left:36%;--s:70px"></i><i class="star purple" style="top:36%;left:32%;--s:40px"></i><i class="star green" style="top:66%;left:44%;--s:60px"></i>
-<section class="hero"><h1>Two<br>gals<br>with<br>many<br><em>visions.</em></h1>
+<section class="hero"><i class="star brown" style="top:10%;left:36%;--s:70px"></i><i class="star purple" style="top:36%;left:32%;--s:40px"></i><i class="star green" style="top:66%;left:44%;--s:60px"></i><h1>Two<br>gals<br>with<br>many<br><em>visions.</em></h1>
 <div class="art">
 <i class="star blue" style="top:36%;left:28%;--s:50px"></i><i class="star green" style="top:44%;left:63%;--s:80px"></i><i class="star brown" style="bottom:6%;left:50%;--s:70px"></i>
 <a href="esta-eats.html" style="top:0;left:36%;width:26%"><img src="{MAP['home-apple']}" alt="Apple core illustration"><span>Esta Eats</span></a>
 <a href="exhibits.html" style="bottom:0;left:0;width:38%"><img src="{MAP['home-fennel']}" alt="Fennel and fig illustration"><span>Exhibits &amp; More</span></a>
 <a href="lanky-design.html" style="top:0;right:4%;width:20%"><img src="{MAP['home-character']}" alt="Lanky character illustration"><span>Lanky Design</span></a>
-</div></section>''')
+</div></section>
+<section class="preorder"><a class="frame calendar-card" href="calendar.html"><img src="{MAP['cal-cover']}" alt="A Year of Plenty: a 2027 calendar celebrating the monthly abundance of Fruit n' Vege" loading="lazy"><h3>Preorder our Calendar</h3></a></section>''')
+
+# CALENDAR PAGE
+FORM="https://forms.gle/YsyXptXdYM5JyfhK6"
+CALSTARS='<i class="star purple hm" style="top:62%;left:36%;--s:90px"></i><i class="star green" style="bottom:3%;left:5%;--s:110px"></i><i class="star blue hm" style="bottom:4%;right:3%;--s:90px"></i>'
+page("calendar.html","A Year of Plenty",f'''{CALSTARS}<div class="detail"><div><h1>A Year of Plenty.</h1>
+<p>A year of plenty is a calendar that celebrates what grows each month in abundance. The pages feature a recipe guided by the season. Printed on recycled paper bound to be grand.</p>
+<p>We are welcoming preorders. They will be ready in the next few weeks. Making the perfect Christmas gift.</p>
+<p>They are $30 a pop &amp; we can arrange shipping if you are based outside of Hawkes Bay.</p>
+<p>Fill in the <a class="inline-link" href="{FORM}" target="_blank" rel="noopener">preorder form</a> &amp; we shall be in contact.</p>
+<p><a class="btn" href="{FORM}" target="_blank" rel="noopener">Preorder form</a></p></div>
+<div class="gallery rect"><img src="{MAP['cal-cover']}" alt="A Year of Plenty 2027 calendar cover" loading="lazy"><img src="{MAP['cal-feb-art']}" alt="February page: the fruit and vege in season" loading="lazy"><img src="{MAP['cal-feb-grid']}" alt="February calendar page with a plum and almond shortcake recipe" loading="lazy"></div></div>''')
 
 # EXHIBITS
 page("exhibits.html","Exhibits & More",f'''{STARS}
